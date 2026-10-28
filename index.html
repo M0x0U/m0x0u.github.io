@@ -1,48 +1,220 @@
-
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Personal Homepage</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Personal homepage of an incoming computer science graduate student, interested in computer vision and generative models." />
+  <meta name="color-scheme" content="light" />
+  <title>Xu Mo | Homepage</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 80px auto;
-      padding: 0 24px;
-      line-height: 1.8;
-      color: #333;
+    :root {
+      --ink: #1b2733;
+      --text: #394856;
+      --muted: #677686;
+      --line: #e5e9ec;
+      --primary: #1f6073;
+      --primary-soft: #e8f2f3;
+      --surface: #ffffff;
+      --background: #fbfcfb;
+      --max-width: 980px;
     }
-    h1 { color: #243b53; }
-    a { color: #0077cc; }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    a:focus-visible { outline: 3px solid #82b7be; outline-offset: 3px; border-radius: 3px; }
+    .container { width: min(calc(100% - 44px), var(--max-width)); margin-inline: auto; }
+
+    header { background: rgba(255,255,255,.95); border-bottom: 1px solid var(--line); }
+    .topbar { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { color: var(--ink); font-size: 1.05rem; font-weight: 730; letter-spacing: -.02em; }
+    nav { display: flex; flex-wrap: wrap; gap: 22px; font-size: .91rem; font-weight: 550; }
+    nav a { color: #526270; }
+    nav a:hover { color: var(--primary); }
+
+    .hero { display: grid; grid-template-columns: 1.8fr 1fr; gap: 42px; align-items: center; padding: 78px 0 72px; }
+    .eyebrow { color: var(--primary); font-size: .81rem; font-weight: 740; text-transform: uppercase; letter-spacing: .13em; }
+    h1, h2, h3 { color: var(--ink); line-height: 1.25; }
+    h1 { margin: 13px 0 15px; font-size: clamp(2.5rem, 6vw, 4.2rem); font-weight: 780; letter-spacing: -.052em; }
+    h2 { margin: 0 0 19px; font-size: 1.5rem; letter-spacing: -.025em; }
+    h3 { margin: 0 0 9px; font-size: 1.05rem; }
+    .subtitle { color: var(--ink); font-size: 1.06rem; font-weight: 620; margin: 0 0 14px; }
+    .lead { font-size: 1.075rem; max-width: 625px; margin: 0; }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 27px; }
+    .button { display: inline-flex; align-items: center; padding: 10px 18px; border-radius: 7px; border: 1px solid var(--primary); font-size: .92rem; font-weight: 650; transition: background .15s ease; }
+    .button-primary { background: var(--primary); color: white; }
+    .button-primary:hover { background: #164b5b; text-decoration: none; }
+    .button-outline { background: transparent; color: var(--primary); }
+    .button-outline:hover { background: var(--primary-soft); text-decoration: none; }
+    .monogram-wrap { display: flex; justify-content: center; align-items: center; }
+    .monogram { width: min(100%, 235px); aspect-ratio: 1; background: linear-gradient(145deg, #eaf1ef, #d5e9e8); border: 1px solid #cddddd; border-radius: 50%; display: grid; place-items: center; box-shadow: 18px 20px 0 rgba(205, 225, 226, .24); }
+    .monogram span { font-family: Georgia, "Times New Roman", serif; font-weight: bold; color: var(--primary); font-size: clamp(4rem, 9vw, 6.5rem); letter-spacing: -.09em; transform: translateX(-.04em); }
+
+    section { padding: 34px 0 36px; scroll-margin-top: 20px; }
+    .section-rule { border-top: 1px solid var(--line); }
+    .body-copy { margin: 0; max-width: 760px; }
+    .education-item { display: grid; grid-template-columns: 125px 1fr; gap: 24px; padding: 7px 0; }
+    .education-date { font-size: .91rem; color: var(--muted); padding-top: 3px; }
+    .education-title { font-weight: 670; color: var(--ink); }
+    .education-description { margin: 3px 0 0; color: var(--muted); font-size: .95rem; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px 20px; box-shadow: 0 2px 7px rgba(31, 52, 61, .025); }
+    .card p { margin: 0; font-size: .94rem; }
+    .tag { display: inline-block; font-size: .76rem; font-weight: 700; color: var(--primary); background: var(--primary-soft); padding: 3px 9px; border-radius: 20px; margin-bottom: 14px; }
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .project-card { padding: 24px; border: 1px solid var(--line); background: white; border-radius: 12px; }
+    .project-card p { margin: 0 0 13px; font-size: .95rem; }
+    .project-link { font-size: .91rem; font-weight: 650; }
+    .contact-copy { margin: 0 0 14px; }
+    .contact-link { font-weight: 670; }
+    footer { margin-top: 48px; background: #f3f6f5; border-top: 1px solid var(--line); padding: 23px 0; font-size: .85rem; color: var(--muted); }
+    .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+    @media (max-width: 740px) {
+      .topbar { align-items: flex-start; flex-direction: column; padding: 18px 0; gap: 10px; }
+      nav { gap: 12px 19px; }
+      .hero { grid-template-columns: 1fr; gap: 25px; padding: 50px 0 38px; }
+      .monogram-wrap { grid-row: 1; justify-content: flex-start; }
+      .monogram { width: 112px; box-shadow: 8px 9px 0 rgba(205, 225, 226, .24); }
+      .monogram span { font-size: 3.9rem; }
+      .cards, .projects { grid-template-columns: 1fr; }
+      .education-item { grid-template-columns: 1fr; gap: 2px; }
+      section { padding: 28px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .button { transition: none; }
+    }
   </style>
 </head>
 <body>
-  <h1>Hello, I'm GuguB1rd!</h1>
+  <!-- EDIT 1: Replace "Xu Mo" below with the name you want to display. -->
+  <header>
+    <div class="container topbar">
+      <a class="brand" href="#top">Xu Mo</a>
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#interests">Research Interests</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-  <h2>About Me</h2>
-  <p>
-    I'm a Computer Science student interested in
-    Computer Vision, 3D/4D Reconstruction,
-    and World Models.
-  </p>
+  <main id="top" class="container">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Personal Academic Homepage</div>
+        <h1>Hi, I'm Xu Mo.</h1>
+        <!-- EDIT 2: Adjust this academic status and the About Me paragraph to match your actual situation. -->
+        <p class="subtitle">Incoming M.S. Student · Computer Science</p>
+        <p class="lead">I'm interested in computer vision, generative models, and 3D/4D scene understanding. I enjoy learning through reading, implementation, and building things.</p>
+        <div class="hero-links">
+          <a class="button button-primary" href="https://github.com/m0x0u" target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a>
+          <a class="button button-outline" href="#about">More about me</a>
+        </div>
+      </div>
+      <div class="monogram-wrap" aria-hidden="true">
+        <!-- Replace this monogram with a personal photo later, if you wish. -->
+        <div class="monogram"><span>M</span></div>
+      </div>
+    </div>
 
-  <h2>Research Interests</h2>
-  <ul>
-    <li>Computer Vision</li>
-    <li>Generative Models</li>
-    <li>World Models</li>
-  </ul>
+    <section id="about" class="section-rule">
+      <h2>About Me</h2>
+      <p class="body-copy">
+        I am an incoming M.S. student in Computer Science at Beihang University.
+        My current interests include computer vision, generative modeling, and
+        3D/4D reconstruction. I am exploring these areas through research reading,
+        coding projects, and hands-on experiments.
+      </p>
+    </section>
 
-  <h2>Projects</h2>
-  <p>Coming soon...</p>
+    <section id="education" class="section-rule">
+      <h2>Education</h2>
+      <div class="education-item">
+        <div class="education-date">Starting 2027</div>
+        <div>
+          <div class="education-title">Beihang University</div>
+          <p class="education-description">Incoming M.S. Student in Computer Science</p>
+        </div>
+      </div>
+      <!-- EDIT 3: Add your undergraduate university and degree below after replacing the example text.
+      <div class="education-item">
+        <div class="education-date">2023 – 2027</div>
+        <div>
+          <div class="education-title">JiLin University</div>
+          <p class="education-description">B.S. in Cyberspace Security</p>
+        </div>
+      </div>
+      -->
+    </section>
 
-  <h2>Contact</h2>
-  <p>
-    <a href="https://github.com/">
-      My GitHub
-    </a>
-  </p>
+    <section id="interests" class="section-rule">
+      <h2>Research Interests</h2>
+      <div class="cards">
+        <article class="card">
+          <span class="tag">Vision</span>
+          <h3>3D / 4D Reconstruction</h3>
+          <p>Exploring how to represent, understand, and reconstruct dynamic visual scenes.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Generative AI</span>
+          <h3>Diffusion Models</h3>
+          <p>Studying diffusion-based generation, model architectures, and practical implementations.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Exploration</span>
+          <h3>World Models</h3>
+          <p>Interested in models that learn representations of environments and their dynamics.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="section-rule">
+      <h2>Projects & Learning</h2>
+      <div class="projects">
+        <article class="project-card">
+          <h3>Learning Diffusion Models</h3>
+          <p>Study notes and implementation practice covering diffusion models and related architectures.</p>
+          <span class="project-link">Ongoing exploration</span>
+        </article>
+        <article class="project-card">
+          <h3>Open-source & Technical Projects</h3>
+          <p>A growing collection of code, experiments, and things I build while learning.</p>
+          <a class="project-link" href="https://github.com/m0x0u" target="_blank" rel="noopener noreferrer">Browse my GitHub ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section-rule">
+      <h2>Contact</h2>
+      <p class="contact-copy">Feel free to reach out or follow my projects on GitHub.</p>
+      <a class="contact-link" href="https://github.com/m0x0u" target="_blank" rel="noopener noreferrer">github.com/m0x0u ↗</a>
+      <!-- EDIT 4: Add an email link when you're ready:
+      <p><a href="mailto:moxu2123@163.com">moxu2123@163.com</a></p>
+      -->
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year">2026</span> Xu Mo</span>
+      <span>Built with HTML & CSS · Hosted on GitHub Pages</span>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
