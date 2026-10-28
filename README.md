@@ -1,2 +1,2 @@
-# guguB1rd.github.io
+# gugub1rd.github.io
 My Personal Homepage
